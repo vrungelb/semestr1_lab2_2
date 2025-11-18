@@ -1,0 +1,37 @@
+# ---- Build directories ----
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*/
+
+# ---- CMake cache and temp files ----
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# ---- Ninja build files ----
+*.ninja
+.ninja_deps
+.ninja_log
+
+# ---- Executables ----
+*.exe
+*.out
+*.o
+*.obj
+
+# ---- CLion / JetBrains ----
+.idea/
+*.iml
+
+# ---- Windows noise ----
+Thumbs.db
+Desktop.ini
+
+# ---- Logs ----
+*.log
+
+# ---- Other ----
+*.swp
+*.DS_Store
