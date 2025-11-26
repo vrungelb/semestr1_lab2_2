@@ -34,13 +34,20 @@ int main(void) {
     }
 
     // Запишем в exact значение соотв. функции
-    double exact = log(x + sqrt(1.0 + x * x));
+    double const exact = log(x + sqrt(1.0 + x * x));
 
     // Запишем в approx значение соотв. функции
-    double approx = ArshinWithGivenPrecision(x, eps, &k_used);
+    double const approx = ArshinWithGivenPrecision(x, eps, &k_used);
 
-    printf("asinh      : %.12f\n", exact);
-    printf("ArshinWithGivenPrecision : %.12f  (N=%d, eps=%.g)\n", approx, k_used, eps);
+    // Погрешность вычисления
+    double const error = fabs(approx - exact);
+
+    // Количество требуемых чисел после запятой
+    int const precision_number = (int)(-floor(log10(eps))) + 1; // избегаем narrowing conversion
+
+    printf("asinh      : %.15f\n", exact);
+    printf("ArshinWithGivenPrecision : %.*f  (N=%d, eps=%.g)\n", precision_number, approx, k_used, eps);
+    printf("The error is: %.15f", error);
 
     return 0;
 }
@@ -77,7 +84,7 @@ double ArshinWithGivenPrecision(double x, double eps, int *k_used) {
 
     if (k_used != NULL) {
         *k_used = n;   // возвращаем количество членов ряда через указатель
-    }
+    } // блок else не нужен, потому что мы передаём валидное значение дефакто
 
     return s;
 }
